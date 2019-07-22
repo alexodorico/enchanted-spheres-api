@@ -1,7 +1,7 @@
-var app = require("express")();
-var http = require("http").Server(app);
-var io = require("socket.io")(http);
-var port = process.env.PORT || 3000;
+const app = require("express")();
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
+const port = process.env.PORT || 3000;
 
 let gameId = new Array();
 
@@ -18,8 +18,8 @@ app.get("/joingame", (req, res) => {
     gameId = new Array();
   }
 
-  const room = io.of(`/${gameId[0]}`);
-  room.on("connection", socket => {
+  const game = io.of(`/${gameId[0]}`);
+  game.on("connection", socket => {
     console.log(socket.nsp.name);
     socket.on("action", msg => {
       socket.broadcast.emit("action", msg);
@@ -27,6 +27,6 @@ app.get("/joingame", (req, res) => {
   });
 });
 
-http.listen(port, function() {
-  console.log("listening on *:" + port);
+http.listen(port, _ => {
+  console.log(`Listenin' on port ${port} 🔥`);
 });

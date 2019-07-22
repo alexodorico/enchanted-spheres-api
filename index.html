@@ -15,10 +15,10 @@
 
         $("button").click(function() {
           fetch("http://localhost:3000/joingame")
-            .then(r => r.json())
-            .then(r => {
-              socket = io(`/${r.id}`);
-              gameId = r.id;
+            .then(response => response.json())
+            .then(response => {
+              socket = io(`/${response.id}`);
+              gameId = response.id;
 
               socket.on("action", function(msg) {
                 console.log(msg);
@@ -31,7 +31,6 @@
             action: "playCard",
             payload: { player: "black" }
           });
-          return false;
         });
       });
     </script>
