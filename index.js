@@ -22,7 +22,6 @@ app.get("/joingame", (req, res) => {
   room.on("connection", socket => {
     console.log(socket.nsp.name);
     socket.on("action", msg => {
-      console.log("asction");
       socket.broadcast.emit("action", msg);
     });
   });

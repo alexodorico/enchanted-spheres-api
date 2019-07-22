@@ -27,7 +27,6 @@
         });
 
         $("div").click(function() {
-          console.log("click");
           socket.emit("action", {
             action: "playCard",
             payload: { player: "black" }
