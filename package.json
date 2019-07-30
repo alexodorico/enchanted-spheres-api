@@ -1,8 +1,9 @@
 {
-  "name": "socket-chat-example",
-  "version": "0.0.1",
-  "description": "my first socket.io app",
+  "name": "enchanted-stones-api",
+  "version": "0.1.0",
+  "description": "API for Enchanted Stones",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.15.2",
     "socket.io": "^1.7.3"
   },
