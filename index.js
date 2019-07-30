@@ -1,7 +1,10 @@
 const app = require("express")();
+const cors = require("cors");
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const port = process.env.PORT || 3000;
+
+app.use(cors());
 
 let gameId = new Array();
 
@@ -12,9 +15,9 @@ app.get("/", function(req, res) {
 app.get("/joingame", (req, res) => {
   if (gameId.length < 1) {
     gameId.push((Math.random() + 1).toString(36).slice(2, 18));
-    res.json({ id: gameId[0] });
+    res.json({ id: gameId[0], color: "black" });
   } else {
-    res.json({ id: gameId[0] });
+    res.json({ id: gameId[0], color: "white" });
     gameId = new Array();
   }
 
@@ -22,6 +25,7 @@ app.get("/joingame", (req, res) => {
   game.on("connection", socket => {
     console.log(socket.nsp.name);
     socket.on("action", msg => {
+      console.log(msg);
       socket.broadcast.emit("action", msg);
     });
   });
