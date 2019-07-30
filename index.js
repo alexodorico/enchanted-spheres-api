@@ -23,9 +23,7 @@ app.get("/joingame", (req, res) => {
 
   const game = io.of(`/${gameId[0]}`);
   game.on("connection", socket => {
-    console.log(socket.nsp.name);
     socket.on("action", msg => {
-      console.log(msg);
       socket.broadcast.emit("action", msg);
     });
   });
