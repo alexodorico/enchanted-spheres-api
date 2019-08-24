@@ -8,10 +8,6 @@ app.use(cors());
 
 let gameId = new Array();
 
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/index.html");
-});
-
 app.get("/joingame", (req, res) => {
   if (gameId.length < 1) {
     gameId.push((Math.random() + 1).toString(36).slice(2, 18));
