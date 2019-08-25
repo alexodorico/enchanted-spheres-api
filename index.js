@@ -26,7 +26,11 @@ app.get("/joingame", (req, res) => {
     });
 
     socket.on("disconnect", _ => {
-      socket.broadcast.emit("playerLeft");
+      if (gameId.length === 1) {
+        gameId = new Array();
+      } else {
+        socket.broadcast.emit("playerLeft");
+      }
     });
   });
 });
