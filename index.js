@@ -19,6 +19,7 @@ app.get("/joingame", (req, res) => {
 
   const game = io.of(`/${gameId[0]}`);
   game.on("connection", socket => {
+    socket.broadcast.emit("connection");
 
     socket.on("action", msg => {
       socket.broadcast.emit("action", msg);
